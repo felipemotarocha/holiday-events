@@ -9,13 +9,40 @@ import { Container, Image, SelectContainer } from "./home.styles";
 
 const DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+type Holidays = {
+  data: {
+    response: {
+      holidays: [
+        {
+          name: string;
+          states: string | string[];
+          type: string[];
+          description: string;
+          country: {
+            id: string;
+            name: string;
+          };
+          date: {
+            datetime: {
+              year: number;
+              month: number;
+              day: number;
+            };
+            iso: string;
+          };
+        }
+      ];
+    };
+  };
+};
+
 const HomePage: React.SFC = () => {
   const fetchHolidays = async () => {
     const {
       data: {
         response: { holidays },
       },
-    } = await axios.get(
+    }: Holidays = await axios.get(
       `https://calendarific.com/api/v2/holidays?&api_key=${process.env.REACT_APP_CALENDARIFIC_API_KEY}&country=US&year=2019`
     );
     console.log(holidays);
