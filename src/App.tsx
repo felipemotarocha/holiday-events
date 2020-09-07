@@ -1,7 +1,8 @@
 import * as React from "react";
+import HomePage from "./pages/home/home.page";
 
 const App: React.SFC = () => {
-  return <h1>hello world</h1>;
+  return <HomePage />;
 };
 
 export default App;
